@@ -6,26 +6,6 @@ class Manager(ABC):
     def __init__(self):
         pass
 
-    @abstractmethod
-    def add(self, *args, **kwargs):
-        pass
-
-    @abstractmethod
-    def remove(self, *args, **kwargs):
-        pass
-
-    @abstractmethod
-    def update(self, *args, **kwargs):
-        pass
-
-    @abstractmethod
-    def get(self, *args, **kwargs):
-        pass
-
-    @abstractmethod
-    def get_all(self, *args, **kwargs):
-        pass
-
 
 class SQLiteManager(Manager):
     def __init__(self, config = dict()):
@@ -34,21 +14,6 @@ class SQLiteManager(Manager):
         self.engine = db.create_engine('sqlite:///' + self.config['sqlite']['url'])
         self.connection = self.engine.connect()
         self.metadata = db.MetaData()
-
-    def add(self, *args, **kwargs):
-        pass
-
-    def remove(self, *args, **kwargs):
-        pass
-
-    def update(self, *args, **kwargs):
-        pass
-
-    def get(self, *args, **kwargs):
-        pass
-
-    def get_all(self, *args, **kwargs):
-        pass
 
 
 class MySQLManager(Manager):
@@ -59,39 +24,10 @@ class MySQLManager(Manager):
         self.connection = self.engine.connect()
         self.metadata = db.MetaData()
 
-    def add(self, *args, **kwargs):
-        pass
-
-    def remove(self, *args, **kwargs):
-        pass
-
-    def update(self, *args, **kwargs):
-        pass
-
-    def get(self, *args, **kwargs):
-        pass
-
-    def get_all(self, *args, **kwargs):
-        pass
-
 
 class PostgreSQLManager(Manager):
     def __init__(self, config):
         super().__init__()
-
-    def add(self, *args, **kwargs):
-        pass
-
-    def remove(self, *args, **kwargs):
-        pass
-
-    def update(self, *args, **kwargs):
-        pass
-
-    def get(self, *args, **kwargs):
-        pass
-
-    def get_all(self, *args, **kwargs):
         pass
 
 

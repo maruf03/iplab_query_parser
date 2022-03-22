@@ -35,50 +35,57 @@ class Parser():
                 obj[field] = row[i]
                 i += 1
             res.append(obj)
+
+        print('GET ROW: {}, WHERE: {}'.format(self.req["model"]["name"], self.req["model"]["where"]))
         return res
 
     def _update(self):
-        res = []
+        table = db.Table(self.req["model"]["name"], self.manager.metadata, autoload=True, autoload_with=self.manager.engine)
+        
+        query = ''
+        for key in self.req["model"]["where"].keys():
+            query += '{0}.{1} == "{2}"'.format(self.req["model"]["name"], key, self.req["model"]["where"][key])
+        
+        if query != '':
+            self.manager.engine.execute(table.update().where(text(query)).values(self.req["model"]["data"]))
+        else:
+            return False
+        
+        print('UPDATE ROW: {}, WHERE: {}, DATA: {}'.format(self.req["model"]["name"], self.req["model"]["where"], self.req["model"]["data"]))
+        return True
+
+    def _delete(self):
         table = db.Table(self.req["model"]["name"], self.manager.metadata, autoload=True, autoload_with=self.manager.engine)
         query = ''
         for key in self.req["model"]["where"].keys():
             query += '{0}.{1} == "{2}"'.format(self.req["model"]["name"], key, self.req["model"]["where"][key])
         
-        cursor = None
+      
         if query != '':
-            cursor = self.manager.engine.execute(db.select([table]).where(text(query)))
+            self.manager.engine.execute(table.delete().where(text(query)))
         else:
-            cursor = self.manager.engine.execute(db.select([table]))
-        
-        for row in cursor:
-            obj = dict()
-            fields = table.columns.keys()
-            i = 0
-            for field in fields:
-                obj[field] = row[i]
-                i += 1
-            res.append(obj)
-        return res
+            return False
 
-    def _delete(self):
-        pass
+        print('DELETE ROW: {}, WHERE: {}'.format(self.req["model"]["name"], self.req["model"]["where"]))
+        return True
     
     def _add(self):
         table = db.Table(self.req["model"]["name"], self.manager.metadata, autoload=True, autoload_with=self.manager.engine)
         self.manager.engine.execute(db.insert(table).values(self.req["model"]["data"]))
+        print('ADD ROW: {}, DATA: {}'.format(self.req["model"]["name"], self.req["model"]["data"]))
         
     def _create_table(self):
         fields = []
         for key in self.req["model"]["schema"].keys():
-            print('{} {}'.format(key, self.req["model"]["schema"][key]))
             fields.append(Column(key, Type[self.req["model"]["schema"][key]]))
-        print(fields)
+       
         table = Table(
             self.req['model']['name'], 
             self.manager.metadata,
             Column('id', Integer, Sequence('user_id_seq'), primary_key=True),
             *fields)
         table.create(self.manager.engine)
+        print('CREATE TABLE: {}'.format(self.req['model']['name']))
         return table
 
     def execute(self):
