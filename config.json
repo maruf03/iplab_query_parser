@@ -1,7 +1,7 @@
 {
     "sqlite": {
         "driver": "sqlite3",
-        "url": "db/database.sqlite3"
+        "url": "db/database.db"
     },
     "mysql": {
         "host": "localhost",

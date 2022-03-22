@@ -8,8 +8,11 @@ if __name__ == '__main__':
     config = None
     with open('config.json', 'r') as config_file:
         config = json.load(config_file)
-    with open('create_table.json', 'r') as req_file:
+    with open('get_student.json', 'r') as req_file:
         req = json.load(req_file)
     
     parser = Parser(config, req)
+
+    res = parser.execute()
+    print(res)
     pass

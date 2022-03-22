@@ -98,7 +98,7 @@ class PostgreSQLManager(Manager):
 class ManagerFactory:
     @staticmethod
     def get_manager(manager_type, config):
-        if manager_type == 'sqlite3':
+        if manager_type == 'sqlite':
             return SQLiteManager(config)
         elif manager_type == 'mysql':
             return MySQLManager(config)
