@@ -2,12 +2,18 @@ from abc import ABC, abstractmethod
 import sqlalchemy as db
 
 class Manager(ABC):
+    """
+    Abstract class for database managers.
+    """
     @abstractmethod
     def __init__(self):
         pass
 
 
 class SQLiteManager(Manager):
+    """
+    Concrete implementation of the Manager class for SQLite Database
+    """
     def __init__(self, config = dict()):
         super().__init__()
         self.config = config
@@ -17,6 +23,9 @@ class SQLiteManager(Manager):
 
 
 class MySQLManager(Manager):
+    """
+    Concrete implementation of the Manager class for MySQL Database
+    """
     def __init__(self, config=dict()):
         super().__init__()
         self.config = config
@@ -26,12 +35,18 @@ class MySQLManager(Manager):
 
 
 class PostgreSQLManager(Manager):
+    """
+    Concrete implementation of the Manager class for PostgreSQL Database
+    """
     def __init__(self, config):
         super().__init__()
         pass
 
 
 class ManagerFactory:
+    """
+    Factory class for database managers.
+    """
     @staticmethod
     def get_manager(manager_type, config):
         if manager_type == 'sqlite':

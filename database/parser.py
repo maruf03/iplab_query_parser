@@ -10,6 +10,9 @@ Type = {
 }
 
 class Parser():
+    """
+    JSON Query Parser
+    """
     def __init__(self, config, req = dict()):
         self.req = req
         self.manager = ManagerFactory.get_manager(self.req['database'], config)
