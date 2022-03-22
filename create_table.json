@@ -1,0 +1,14 @@
+{
+    "database": "sqlite",
+    "type": "create",
+    "model": {
+        "name": "Student",
+        "schema": {
+            "name": "string",
+            "age": "int",
+            "address": "string",
+            "phone": "string",
+            "email": "string"
+        }
+    }
+}

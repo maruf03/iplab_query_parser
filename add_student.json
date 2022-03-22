@@ -1,0 +1,14 @@
+{
+    "database": "sqlite",
+    "type": "add",
+    "model": {
+        "name": "Student",
+        "data": {
+            "name": "Alif",
+            "age": 25,
+            "address": "Dhaka",
+            "phone": "01922216159",
+            "email": "maruf.alif03@gmail.com"
+        }
+    }
+}

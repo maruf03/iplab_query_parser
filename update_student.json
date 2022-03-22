@@ -1,0 +1,14 @@
+{
+    "database": "sqlite",
+    "type": "update",
+    "model": {
+        "name": "Student",
+        "data": {
+            "age": 22
+        },
+        "where": {
+            "id": 34
+        }
+    }
+}
+

@@ -1,0 +1,15 @@
+{
+    "database": "sqlite",
+    "type": "get",
+    "model": {
+        "name": "Student",
+        "where": {
+            "name": "Alif"
+        },
+        "select": {
+            "name": true,
+            "age": true,
+            "address": true
+        }
+    }
+}

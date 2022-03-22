@@ -1,0 +1,10 @@
+{
+    "database": "sqlite",
+    "type": "delete",
+    "model": {
+        "name": "Student",
+        "where": {
+            "name": "Alif"
+        }
+    }
+}
