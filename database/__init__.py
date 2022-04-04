@@ -1,1 +1,1 @@
-from .manager import  Manager, PostgreSQLManager, MySQLManager, ManagerFactory, SQLiteManager
+from .manager import  Manager, MySQLManager, ManagerFactory, SQLiteManager

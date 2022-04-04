@@ -76,6 +76,7 @@ class Parser():
         table = db.Table(self.req["model"]["name"], self.manager.metadata, autoload=True, autoload_with=self.manager.engine)
         self.manager.engine.execute(db.insert(table).values(self.req["model"]["data"]))
         print('ADD ROW: {}, DATA: {}'.format(self.req["model"]["name"], self.req["model"]["data"]))
+        return True
         
     def _create_table(self):
         fields = []

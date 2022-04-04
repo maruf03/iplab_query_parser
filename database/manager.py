@@ -34,13 +34,13 @@ class MySQLManager(Manager):
         self.metadata = db.MetaData()
 
 
-class PostgreSQLManager(Manager):
-    """
-    Concrete implementation of the Manager class for PostgreSQL Database
-    """
-    def __init__(self, config):
-        super().__init__()
-        pass
+# class PostgreSQLManager(Manager):
+#     """
+#     Concrete implementation of the Manager class for PostgreSQL Database
+#     """
+#     def __init__(self, config):
+#         super().__init__()
+#         pass
 
 
 class ManagerFactory:
@@ -53,8 +53,8 @@ class ManagerFactory:
             return SQLiteManager(config)
         elif manager_type == 'mysql':
             return MySQLManager(config)
-        elif manager_type == 'postgres':
-            return PostgreSQLManager(config)
+        # elif manager_type == 'postgres':
+        #     return PostgreSQLManager(config)
         else:
             raise Exception('Unknown manager type: {}'.format(manager_type))
 
