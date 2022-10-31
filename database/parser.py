@@ -90,7 +90,7 @@ class Parser():
             *fields)
         table.create(self.manager.engine)
         print('CREATE TABLE: {}'.format(self.req['model']['name']))
-        return table
+        return True
 
     def execute(self):
         if self.req['type'] == 'get':
